@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example.plugins.tutorial</groupId>
+  <groupId>com.opensource.plugins.jira.jql</groupId>
   <artifactId>jira-opensource-jql-functions</artifactId>
   <packaging>atlassian-plugin</packaging>
   <name>jira-opensource-jql-functions</name>
   <version>1.0</version>
-  <description>jql-function plugins for Atlassian JIRA.</description>
+  <description>jql-function plugins for Atlassian JIRA</description>
   <organization>
-    <name>No company name</name>
-    <url>http://www.noname.com/</url>
+    <name>BeFree</name>
+    <url>http://www.nowebsite.co/</url>
   </organization>
   <build>
     <plugins>
