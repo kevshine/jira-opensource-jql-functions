@@ -8,14 +8,20 @@
   </plugin-info>
 
     <jql-function name="Recent Project Function2" i18n-name-key="parent-fixversion-in-function.name" key="parent-fixversion-in-function" class="com.opensource.plugins.jira.jql.ParentsWithAFixVersionOf">
-    <fname>parentsWithAFixVersionOf</fname>
+    <fname>FixVersionOf</fname>
     <description key="parent-fixversion-in-function.description">Provides a list of all issues that have parent issues with a fix version as entered</description>
     <list>true</list>
   </jql-function>
   
     <jql-function name="Recent Project Function2" i18n-name-key="parent-status-in-function.name" key="parent-status-in-function" class="com.opensource.plugins.jira.jql.ParentStatusIn">
-    <fname>parentsWithAParentStatusOf</fname>
+    <fname>CurrentStatusOf</fname>
     <description key="parent-status-in-function.description">Provides a list of all issues that have parent issues with a parent status as entered</description>
+    <list>true</list>
+  </jql-function>
+  
+  <jql-function name="Recent Project Function" i18n-name-key="recent-project-function.name" key="recent-project-function" class="com.opensource.plugins.jira.jql.RecentProjectFunction">
+    <fname>recentProjects</fname>
+    <description key="recent-project-function.description">Provides a JQL function to restrict the search to recently visited projects.</description>
     <list>true</list>
   </jql-function>
   
