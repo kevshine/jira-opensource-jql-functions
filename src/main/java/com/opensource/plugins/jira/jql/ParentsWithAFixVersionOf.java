@@ -52,6 +52,8 @@ public class ParentsWithAFixVersionOf extends AbstractJqlFunction {
 	public int getMinimumNumberOfExpectedArguments() {
 		return 1;
 	}
+	
+	
 
 	/**
 	 * Return a list for a specific fix Version.
@@ -70,13 +72,13 @@ public class ParentsWithAFixVersionOf extends AbstractJqlFunction {
 		searchService = cm.getSearchService();
 
 		try {
-			for (Iterator iterator = arguments.iterator(); iterator.hasNext();) {
+			for (Iterator<String> iterator = arguments.iterator(); iterator.hasNext();) {
 				String version = (String) iterator.next();
 				if (version.contains(",")) {
 					String[] versions = version.split(",");
 					builder.where().fixVersion(versions);
 				} else {
-					builder.where().status(version);
+					builder.where().fixVersion(version);
 				}
 
 			}
@@ -91,7 +93,7 @@ public class ParentsWithAFixVersionOf extends AbstractJqlFunction {
 
 			final SearchResults results = searchService.search(queryCreationContext.getUser(), query, PagerFilter.getUnlimitedFilter());
 			final List<Issue> issues = results.getIssues();
-			for (Iterator iterator = issues.iterator(); iterator.hasNext();) {
+			for (Iterator<Issue> iterator = issues.iterator(); iterator.hasNext();) {
 				Issue issue = (Issue) iterator.next();
 				/* add all the subtaskIssues */
 				subTaskIssues.addAll(issue.getSubTaskObjects());

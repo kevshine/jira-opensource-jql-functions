@@ -15,27 +15,19 @@ import com.atlassian.jira.ComponentManager;
 import com.atlassian.jira.JiraDataType;
 import com.atlassian.jira.JiraDataTypes;
 import com.atlassian.jira.bc.JiraServiceContextImpl;
-import com.atlassian.jira.bc.issue.IssueService;
 import com.atlassian.jira.bc.issue.search.SearchService;
 import com.atlassian.jira.issue.Issue;
-import com.atlassian.jira.issue.IssueManager;
-import com.atlassian.jira.issue.search.SearchContext;
 import com.atlassian.jira.issue.search.SearchException;
 import com.atlassian.jira.issue.search.SearchRequest;
 import com.atlassian.jira.issue.search.SearchResults;
-import com.atlassian.jira.issue.status.Status;
 import com.atlassian.jira.jql.builder.JqlQueryBuilder;
 import com.atlassian.jira.jql.operand.QueryLiteral;
 import com.atlassian.jira.jql.query.QueryCreationContext;
 import com.atlassian.jira.plugin.jql.function.AbstractJqlFunction;
-import com.atlassian.jira.security.JiraAuthenticationContext;
-import com.atlassian.jira.user.UserHistoryItem;
-import com.atlassian.jira.user.UserProjectHistoryManager;
 import com.atlassian.jira.util.MessageSet;
 import com.atlassian.jira.util.NotNull;
 import com.atlassian.jira.web.bean.PagerFilter;
 import com.atlassian.query.Query;
-import com.atlassian.query.clause.Clause;
 import com.atlassian.query.clause.TerminalClause;
 import com.atlassian.query.operand.FunctionOperand;
 
@@ -79,7 +71,7 @@ public class ParentStatusIn extends AbstractJqlFunction {
 		searchService = cm.getSearchService();
 
 		try {
-			for (Iterator iterator = arguments.iterator(); iterator.hasNext();) {
+			for (Iterator<String> iterator = arguments.iterator(); iterator.hasNext();) {
 				String string = (String) iterator.next();
 				if (string.contains(",")) {
 					String[] statuses = string.split(",");
@@ -100,7 +92,7 @@ public class ParentStatusIn extends AbstractJqlFunction {
 
 			final SearchResults results = searchService.search(queryCreationContext.getUser(), query, PagerFilter.getUnlimitedFilter());
 			final List<Issue> issues = results.getIssues();
-			for (Iterator iterator = issues.iterator(); iterator.hasNext();) {
+			for (Iterator<Issue> iterator = issues.iterator(); iterator.hasNext();) {
 				Issue issue = (Issue) iterator.next();
 				/* add all the subtaskIssues */
 				subTaskIssues.addAll(issue.getSubTaskObjects());
