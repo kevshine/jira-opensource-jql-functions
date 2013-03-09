@@ -107,7 +107,7 @@ public class ParentsWithAFixVersionOf extends AbstractJqlFunction {
 		for (Iterator<Issue> iterator = subTaskIssues.iterator(); iterator.hasNext();) {
 			Issue issue = (Issue) iterator.next();
 			try {
-				literals.add(new QueryLiteral(operand, issue.getKey()));
+				literals.add(new QueryLiteral(operand, issue.getId()));
 			} catch (NumberFormatException e) {
 				log.warn(String.format("Subtask with a non numeric key ID '%s'.", issue.getKey()));
 			}

@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import com.atlassian.jira.JiraDataType;
 import com.atlassian.jira.JiraDataTypes;
+import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.jql.operand.QueryLiteral;
 import com.atlassian.jira.jql.query.QueryCreationContext;
 import com.atlassian.jira.plugin.jql.function.AbstractJqlFunction;
 import com.atlassian.jira.user.UserHistoryItem;
+import com.atlassian.jira.user.UserIssueHistoryManager;
 import com.atlassian.jira.user.UserProjectHistoryManager;
 import com.atlassian.jira.util.MessageSet;
 import com.atlassian.jira.util.NotNull;
@@ -30,11 +32,11 @@ public class RecentProjectFunction extends AbstractJqlFunction
 {
     private static final Logger log = LoggerFactory.getLogger(RecentProjectFunction.class);
 
-    private final UserProjectHistoryManager userProjectHistoryManager;
+    private final UserIssueHistoryManager userIssueHistoryManager;
 
-    public RecentProjectFunction(UserProjectHistoryManager userProjectHistoryManager)
+    public RecentProjectFunction(UserIssueHistoryManager  userIssueHistoryManager)
     {
-        this.userProjectHistoryManager = userProjectHistoryManager;
+        this.userIssueHistoryManager = userIssueHistoryManager;
     }
 
     /**
@@ -50,23 +52,16 @@ public class RecentProjectFunction extends AbstractJqlFunction
     {
         final List<QueryLiteral> literals = new LinkedList<QueryLiteral>();
 
-        /*
-        * We do not need to do a security check here as the search will do the security checks for us.
-        */
-        final List<UserHistoryItem> projects = userProjectHistoryManager.getProjectHistoryWithoutPermissionChecks(queryCreationContext.getUser());
-        for (final UserHistoryItem userHistoryItem : projects)
-        {
-            final String value = userHistoryItem.getEntityId();
 
             try
             {
-                literals.add(new QueryLiteral(operand, Long.parseLong(value)));
+                literals.add(new QueryLiteral(operand,"TST-2"));
             }
             catch (NumberFormatException e)
             {
-                log.warn(String.format("User history returned a non numeric project ID '%s'.", value));
+                log.warn(String.format("WOOPS"));
             }
-        }
+        
 
          return literals;
     }
@@ -84,6 +79,6 @@ public class RecentProjectFunction extends AbstractJqlFunction
     */
     public JiraDataType getDataType()
     {
-        return JiraDataTypes.PROJECT;
+        return JiraDataTypes.ISSUE;
     }
 }

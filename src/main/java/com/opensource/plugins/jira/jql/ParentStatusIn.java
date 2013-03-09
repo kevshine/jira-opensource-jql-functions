@@ -24,6 +24,7 @@ import com.atlassian.jira.jql.builder.JqlQueryBuilder;
 import com.atlassian.jira.jql.operand.QueryLiteral;
 import com.atlassian.jira.jql.query.QueryCreationContext;
 import com.atlassian.jira.plugin.jql.function.AbstractJqlFunction;
+import com.atlassian.jira.user.UserIssueHistoryManager;
 import com.atlassian.jira.util.MessageSet;
 import com.atlassian.jira.util.NotNull;
 import com.atlassian.jira.web.bean.PagerFilter;
@@ -40,6 +41,14 @@ import com.atlassian.query.operand.FunctionOperand;
  */
 public class ParentStatusIn extends AbstractJqlFunction {
 
+	
+    private final UserIssueHistoryManager userIssueHistoryManager;
+
+    public ParentStatusIn(UserIssueHistoryManager  userIssueHistoryManager)
+    {
+        this.userIssueHistoryManager = userIssueHistoryManager;
+    }
+    
 	private static final Logger log = LoggerFactory.getLogger(ParentStatusIn.class);
 
 	/**
@@ -106,7 +115,8 @@ public class ParentStatusIn extends AbstractJqlFunction {
 		for (Iterator<Issue> iterator = subTaskIssues.iterator(); iterator.hasNext();) {
 			Issue issue = (Issue) iterator.next();
 			try {
-				literals.add(new QueryLiteral(operand, issue.getKey()));
+			
+				literals.add(new QueryLiteral(operand, issue.getId()));
 			} catch (NumberFormatException e) {
 				log.warn(String.format("Subtask with a non numeric key ID '%s'.", issue.getKey()));
 			}
