@@ -8,8 +8,8 @@
   <version>1.0</version>
   <description>jql-function plugins for Atlassian JIRA</description>
   <organization>
-    <name>BeFree</name>
-    <url>http://www.nowebsite.co/</url>
+    <name>BeeFree</name>
+    <url>http://www.BeeFree.co.za</url>
   </organization>
   <build>
     <plugins>
