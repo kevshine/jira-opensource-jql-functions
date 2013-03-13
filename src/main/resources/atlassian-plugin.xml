@@ -7,18 +7,23 @@
     <vendor name="${project.organization.name}" url="${project.organization.url}"/>
   </plugin-info>
 
-    <jql-function name="Recent Project Function2" i18n-name-key="parent-fixversion-in-function.name" key="parent-fixversion-in-function" class="com.opensource.plugins.jira.jql.ParentsWithAFixVersionOf">
+   <jql-function name="Parent with A FixVersion of" i18n-name-key="parent-fixversion-in-function.name" key="parent-fixversion-in-function" class="com.opensource.plugins.jira.jql.ParentsWithAFixVersionOf">
     <fname>ParentWithAFixVersionOf</fname>
-    <description key="parent-fixversion-in-function.description">Provides a list of all issues that have parent issues with a fix version as entered</description>
+    <description key="parent-fixversion-in-function.description">Provides a list of all child issues that have parent issues with a fix version as entered</description>
     <list>true</list>
   </jql-function>
   
-    <jql-function name="Recent Project Function2" i18n-name-key="parent-status-in-function.name" key="parent-status-in-function" class="com.opensource.plugins.jira.jql.ParentStatusIn">
+   <jql-function name="Parent with A current status of" i18n-name-key="parent-status-in-function.name" key="parent-status-in-function" class="com.opensource.plugins.jira.jql.ParentStatusIn">
     <fname>ParentWithACurrentStatusOf</fname>
-    <description key="parent-status-in-function.description">Provides a list of all issues that have parent issues with a parent status as entered</description>
+    <description key="parent-status-in-function.description">Provides a list of all child issues that have parent issues with a parent status as entered</description>
     <list>true</list>
   </jql-function>
   
+   <jql-function name="Parent with Issue Type of" i18n-name-key="parent-with-issue-type-function.name" key="parent-with-issue-type-function" class="com.opensource.plugins.jira.jql.ParentWithIssueTypeOf">
+    <fname>ParentWithIssueTypeOf</fname>
+    <description key="parent-with-issue-type-function.description">Provides a list of all child issues that have a parent with a specific issue type</description>
+    <list>true</list>
+  </jql-function>
 
   
     
